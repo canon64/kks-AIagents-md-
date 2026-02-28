@@ -21,11 +21,11 @@
 ## 鉄則
 1. コードを書く前に `analysis/` の調査ノートを確認する。なければ `ilspycmd` でデコンパイルする。推測しない
 2. 調査結果は `analysis/` にmdとして残す。次回以降の再調査を防ぐため
-2. `StudioAPI.StudioLoaded` を待ってからデータにアクセスする（Awake時は未初期化）
-3. `[BepInProcess]` は `"CharaStudio"` か `"KoikatsuSunshine"` を正しく指定する
-4. 専用ログファイルをプラグインフォルダ内に出力する（`Path.GetDirectoryName(Info.Location)`）
-5. 全パラメータはJSON設定ファイルで変更可能にする（ハードコード禁止）
-6. リソース・設定ファイルはプラグインフォルダ内に置く（絶対パスをコードに書かない）
+3. `StudioAPI.StudioLoaded` を待ってからデータにアクセスする（Awake時は未初期化）
+4. `[BepInProcess]` は `"CharaStudio"` か `"KoikatsuSunshine"` を正しく指定する
+5. 専用ログファイルをプラグインフォルダ内に出力する（`Path.GetDirectoryName(Info.Location)`）
+6. 全パラメータはJSON設定ファイルで変更可能にする（ハードコード禁止）
+7. リソース・設定ファイルはプラグインフォルダ内に置く（絶対パスをコードに書かない）
 
 ## ビルド & デプロイ
 ```bash
