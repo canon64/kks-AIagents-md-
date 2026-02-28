@@ -1,5 +1,7 @@
 # KKS BepInExプラグイン開発
 
+> このフォルダ (`kks-AIagents-md/`) はGitHubデプロイ専用。実際の調査ノートは `F:/kks/work/analysis/` に置く。
+
 ## 質問対応ルール
 - 質問には先に答える
 - 明示的に依頼されるまでコードを書かない
