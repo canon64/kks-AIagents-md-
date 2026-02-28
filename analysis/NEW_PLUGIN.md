@@ -32,6 +32,7 @@
 | `StudioCustomVoice_RegisterCustomVoices.il.txt` | カスタムボイス登録処理のILコード | 未消化 | - |
 | `StudioCustomVoice_RegisterCustomVoices.il2.txt` | 同上の別バージョン | 未消化 | - |
 | `map_add.md` | 本編マップ追加調査。BaseMap/MapInfo/MapSelectMenuSceneの構造と追加方法 | 未消化 | - |
+| `kkapi_guide.md` | KKSAPI完全ガイド。StudioAPI/CharacterApi/MakerAPI/GameAPI全クラスのAPI・パターン集 | 未消化 | - |
 
 ---
 
