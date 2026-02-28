@@ -41,16 +41,46 @@
 
 ---
 
-## マップ追加の2アプローチ
+## マップ追加の3アプローチ
 
-### A. 純正（カスタムAssetBundle）
+### A. Sideloader zipmod（推奨）
+
+Sideloaderが `CommonLib.GetAssetBundleNameListFromPath` にPostfixを当てており、
+zipmod内の `abdata/map/list/mapinfo/` パスのABを自動的にリストへ追加する。
+
+zipmodの構造（実在する `[DarkSoldier27][KKS]COM3D2 H-Maps 1.0.1.zipmod` を参考）:
+```
+zipmod内:
+  manifest.xml
+  abdata/map/list/mapinfo/MYMOD000.unity3d        ← MapInfo ScriptableObject
+  abdata/map/list/mapthumbnailinfo/MYMOD000.unity3d ← MapThumbnailInfo ScriptableObject
+  abdata/map/scene/mymap001.unity3d               ← マップシーン本体
+  abdata/map/thumbnail/mymap001.unity3d           ← サムネイル画像
+  abdata/studio/info/MYMOD/Map_MYMOD.csv          ← スタジオ用マップリスト（任意）
+```
+
+manifest.xmlの最小構成:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest schema-ver="1">
+  <guid>author.mymod</guid>
+  <name>My Map Mod</name>
+  <version>1.0</version>
+  <author>author</author>
+  <game>Koikatsu Sunshine</game>
+</manifest>
+```
+
+zipmodを `F:/kks/mods/` に置けばSideloaderが自動読み込み。
+ただしABのビルドにUnityプロジェクトが必要。
+
+### B. 純正（カスタムAssetBundle直置き）
 
 - Unityプロジェクトでマップシーンを作り、ABとしてビルド
-- `map/list/mapinfo/` にカスタムABを追加
-- `MapInfo` ScriptableObjectにParamを設定
-- 難易度高（Unity環境必須）
+- `abdata/map/list/mapinfo/` に直接置く
+- Sideloaderなしでも動作するが管理が煩雑
 
-### B. プラグイン（既存マップの再利用）
+### C. プラグイン（既存マップの再利用）
 
 - `BaseMap.LoadMapInfo` Postfix で戻り値の辞書にエントリを追加
 - `AssetBundleName` / `AssetName` は既存マップのものを流用、`No` だけ変える
@@ -99,3 +129,9 @@ static void LoadMapInfo_Postfix(ref Dictionary<int, MapInfo.Param> __result)
 - `../_decomp/_tmp_BaseMap.cs` — LoadMapInfo/LoadMapThumbnailInfo実装
 - `../_decomp/_tmp_MapInfo.cs` — MapInfo ScriptableObject定義
 - `../_decomp/_tmp_MapSelectMenuScene.cs` — マップ選択UI実装
+- `../_decomp/_tmp_Sideloader_Main.cs` — Sideloaderのフック実装（GetAssetBundleNameListFromPath Postfix）
+- `../_decomp/_tmp_Sideloader_Manifest.cs` — manifest.xmlのパース実装
+
+## 参照zipmod
+
+- `F:/kks/mods/[DarkSoldier27][KKS]COM3D2 H-Maps 1.0.1.zipmod` — 実際のマップ追加zipmodの構造参考
