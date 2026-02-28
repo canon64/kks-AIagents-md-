@@ -31,6 +31,7 @@
 | `StudioCustomVoice_PlayPrefix.il.txt` | カスタムボイス再生のHarmonyパッチILコード | 未消化 | - |
 | `StudioCustomVoice_RegisterCustomVoices.il.txt` | カスタムボイス登録処理のILコード | 未消化 | - |
 | `StudioCustomVoice_RegisterCustomVoices.il2.txt` | 同上の別バージョン | 未消化 | - |
+| `map_add.md` | 本編マップ追加調査。BaseMap/MapInfo/MapSelectMenuSceneの構造と追加方法 | 未消化 | - |
 
 ---
 
